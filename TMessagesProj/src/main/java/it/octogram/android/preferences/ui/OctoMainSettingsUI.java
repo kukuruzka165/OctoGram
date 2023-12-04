@@ -32,7 +32,7 @@ public class OctoMainSettingsUI implements PreferencesEntry {
     public OctoPreferences getPreferences(PreferencesFragment fragment, Context context) {
         String footer = AndroidUtilities.replaceTags(LocaleController.formatString("OctoMainSettingsFooter", R.string.OctoMainSettingsFooter, BuildConfig.BUILD_VERSION_STRING)).toString();
         String comingSoon = AndroidUtilities.replaceTags(LocaleController.formatString("FeatureCurrentlyUnavailable", R.string.FeatureCurrentlyUnavailable)).toString();
-        return OctoPreferences.builder("OctoGram Settings")
+        return OctoPreferences.builder(String.format("%s Settings", LocaleController.getString(R.string.AppName)))
                 .sticker(context, R.raw.utyan_robot, true, LocaleController.formatString("OctoMainSettingsHeader", R.string.OctoMainSettingsHeader))
                 .category(LocaleController.formatString("Settings", R.string.Settings), category -> {
 
@@ -117,7 +117,7 @@ public class OctoMainSettingsUI implements PreferencesEntry {
                             .build());
                     category.row(new TextDetailRow.TextDetailRowBuilder()
                             .onClick(() -> {
-                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://octogram.crowdin.com/octogram"));
+                                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://translations.octogram.site"));
                                 fragment.getParentActivity().startActivity(browserIntent);
                             })
                             .icon(R.drawable.msg_translate)
